@@ -1,0 +1,141 @@
+:root {
+    --font: #101d18;
+    --link: #00A59C;
+    --bg: #89d4cc;
+}
+
+/* BODY & DIVS */
+
+body {
+    background: var(--bg);
+    color: var(--font)
+}
+
+.container-fluid {
+    padding: 0 0;
+}
+
+.row {
+    max-width: 950px;
+    margin: auto;
+}
+
+
+/* HEADLINES & OTHER TEXTS */
+
+h1 {
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    text-shadow:
+    -1px -1px 0 rgba(38, 124, 110, 0.5),
+    1px -1px 0 rgba(38, 124, 110, 0.5),
+    -1px 1px 0 rgba(38, 124, 110, 0.5),
+    1px 1px 0 rgba(38, 124, 110, 0.5);
+}
+
+h3 {
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+h4 {
+    margin-top: 10px;
+    font-style: italic;
+    font-size: 18px;
+}
+
+.right {
+    text-align: right;
+}
+
+.green {
+    color:#069206;
+}
+
+.red {
+    color:#921313;
+}
+
+/* TABLES */
+
+th, td {
+    padding: 0 5px;
+}
+
+td button {
+    background: none;
+    border: none;
+}
+
+td button:hover {
+    color: var(--link);
+}
+
+/* POKEMON TYPES */
+
+/* Background div for type relations */
+.box {
+    background-color: lightblue;
+}
+
+.poke-type, select {
+    width: 100px;
+}
+
+.poke-type:hover {
+    filter: brightness(90%);
+}
+
+/* Background colors for Pokemon type buttons */
+button.normal {background: #A8A77A;}
+button.fire {background: #EE8130;}
+button.water {background: #6390F0;}
+button.electric {background: #F7D02C;}
+button.grass {background: #7AC74C;}
+button.ice {background: #96D9D6;}
+button.fighting {background: #C22E28;}
+button.poison {background: #A33EA1;}
+button.ground {background: #E2BF65;}
+button.flying {background: #A98FF3;}
+button.psychic {background: #F95587;}
+button.bug {background: #A6B91A;}
+button.rock {background: #B6A136;}
+button.ghost {background: #735797;}
+button.dragon {background: #6F35FC;}
+button.dark {background: #705746;}
+button.steel {background: #B7B7CE;}
+button.fairy {background: #D685AD;}
+
+/* Font colors for Pokemon type headings */
+h1.normal {color: #A8A77A;}
+h1.fire {color: #EE8130;}
+h1.water {color: #6390F0;}
+h1.electric {color: #F7D02C;}
+h1.grass {color: #7AC74C;}
+h1.ice {color: #96D9D6;}
+h1.fighting {color: #C22E28;}
+h1.poison {color: #A33EA1;}
+h1.ground {color: #E2BF65;}
+h1.flying {color: #A98FF3;}
+h1.psychic {color: #F95587;}
+h1.bug {color: #A6B91A;}
+h1.rock {color: #B6A136;}
+h1.ghost {color: #735797;}
+h1.dragon {color: #6F35FC;}
+h1.dark {color: #705746;}
+h1.steel {color: #B7B7CE;}
+h1.fairy {color: #D685AD;}
+
+/* ABILITY BUTTONS */
+
+.ability {
+    background: rgb(169, 199, 182);
+    pointer-events: none;
+    width: 150px;
+}
+
+.hidden.ability {
+    background: rgb(114, 138, 126);
+}
