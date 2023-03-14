@@ -1,7 +1,42 @@
 :root {
-    --font: #101d18;
-    --link: #00A59C;
-    --bg: #89d4cc;
+    --font: #0A0B08;
+    --link: #453B4F;
+    --navtext: #E5F3EA;
+    --bg: #A4D4B4;
+    --nav: #45503B;
+    --box: #BFE1CA;
+}
+
+.blue {
+    background: blue;
+}
+
+a {
+    color: var(--link);
+    text-decoration: none;
+}
+
+.navbar a {
+    color: var(--bg);
+    font-style: italic;
+}
+
+.navbar {
+    color: var(--navtext);
+    margin-bottom: 3vh;
+    background-image: linear-gradient(to right, var(--nav), var(--link));
+    width: 100%
+}
+
+.right {
+    float: right;
+    text-align: right;
+}
+
+.center {
+    align-items: center;
+    text-align: center;
+    
 }
 
 /* BODY & DIVS */
@@ -13,25 +48,36 @@ body {
 
 .container-fluid {
     padding: 0 0;
+
+}
+
+.max-width {
+    max-width: 950px;
 }
 
 .row {
-    max-width: 950px;
     margin: auto;
 }
 
+img {
+    height: 96px;
+    width: 96px;
+}
 
 /* HEADLINES & OTHER TEXTS */
 
 h1 {
-    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 20px;
     padding: 0;
+    font-size: 40px;
     font-weight: 600;
-    text-shadow:
-    -1px -1px 0 rgba(38, 124, 110, 0.5),
-    1px -1px 0 rgba(38, 124, 110, 0.5),
-    -1px 1px 0 rgba(38, 124, 110, 0.5),
-    1px 1px 0 rgba(38, 124, 110, 0.5);
+}
+
+h2 {
+    padding-top: 15px;
+    font-size: 25px;
+    text-align: left;
 }
 
 h3 {
@@ -44,6 +90,21 @@ h4 {
     margin-top: 10px;
     font-style: italic;
     font-size: 18px;
+}  
+
+.hl2 {
+    font-size: 16px;
+    line-height: 30px;
+    height: 30px;
+}
+
+.pl {
+    padding-left: 11px;
+}
+
+.large {
+    font-size: 25px;
+    font-weight: bold;
 }
 
 .right {
@@ -58,6 +119,11 @@ h4 {
     color:#921313;
 }
 
+.text-shadow {
+    text-shadow:
+    2px 2px 2px var(--link);
+}
+
 /* TABLES */
 
 th, td {
@@ -70,72 +136,99 @@ td button {
 }
 
 td button:hover {
-    color: var(--link);
+    color: #78638d;
 }
 
 /* POKEMON TYPES */
 
 /* Background div for type relations */
 .box {
-    background-color: lightblue;
+    background-color: var(--box);
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
-.poke-type, select {
-    width: 100px;
+.poke-type, select, .special {
+    width: 120px;
 }
 
 .poke-type:hover {
     filter: brightness(90%);
 }
 
+/* needs to be option.type too */
 /* Background colors for Pokemon type buttons */
-button.normal {background: #A8A77A;}
-button.fire {background: #EE8130;}
-button.water {background: #6390F0;}
-button.electric {background: #F7D02C;}
-button.grass {background: #7AC74C;}
-button.ice {background: #96D9D6;}
-button.fighting {background: #C22E28;}
-button.poison {background: #A33EA1;}
-button.ground {background: #E2BF65;}
-button.flying {background: #A98FF3;}
-button.psychic {background: #F95587;}
-button.bug {background: #A6B91A;}
-button.rock {background: #B6A136;}
-button.ghost {background: #735797;}
-button.dragon {background: #6F35FC;}
-button.dark {background: #705746;}
-button.steel {background: #B7B7CE;}
-button.fairy {background: #D685AD;}
+option.normal, button.normal {background: #aa9;}
+option.fire, button.fire {background: #f64;}
+option.water, button.water {background: #39f;}
+option.electric, button.electric {background: #fc3;}
+option.grass, button.grass {background: #7c5;}
+option.ice, button.ice {background: #6cf;}
+option.fighting, button.fighting {background: #b54;}
+option.poison, button.poison {background: #a59;}
+option.ground, button.ground {background: #db5;}
+option.flying, button.flying {background: #89f;}
+option.psychic, button.psychic {background: #F59;}
+option.bug, button.bug {background: #Ab2;}
+option.rock, button.rock {background: #Ba6;}
+option.ghost, button.ghost {background: #66b;}
+option.dragon, button.dragon {background: #6F35FC;}
+option.dark, button.dark {background: #76e;}
+option.steel, button.steel {background: #aab;}
+option.fairy, button.fairy {background: #e9e;}
 
 /* Font colors for Pokemon type headings */
-h1.normal {color: #A8A77A;}
-h1.fire {color: #EE8130;}
-h1.water {color: #6390F0;}
-h1.electric {color: #F7D02C;}
-h1.grass {color: #7AC74C;}
-h1.ice {color: #96D9D6;}
-h1.fighting {color: #C22E28;}
-h1.poison {color: #A33EA1;}
-h1.ground {color: #E2BF65;}
-h1.flying {color: #A98FF3;}
-h1.psychic {color: #F95587;}
-h1.bug {color: #A6B91A;}
-h1.rock {color: #B6A136;}
-h1.ghost {color: #735797;}
-h1.dragon {color: #6F35FC;}
-h1.dark {color: #705746;}
-h1.steel {color: #B7B7CE;}
-h1.fairy {color: #D685AD;}
+p.normal, h1.normal {color: #aa9;}
+p.fire, h1.fire {color: #f64;}
+p.water, h1.water {color: #39f;}
+p.electric, h1.electric {color: #fc3;}
+p.grass, h1.grass {color: #7c5;}
+p.ice, h1.ice {color: #6cf;}
+p.fighting, h1.fighting {color: #b54;}
+p.poison, h1.poison {color: #a59;}
+p.ground, h1.ground {color: #db5;}
+p.flying, h1.flying {color: #89f;}
+p.psychic, h1.psychic {color: #F59;}
+p.bug, h1.bug {color: #Ab2;}
+p.rock, h1.rock {color: #Ba6;}
+p.ghost, h1.ghost {color: #66b;}
+p.dragon, h1.dragon {color: #6F35FC;}
+p.dark, h1.dark {color: #76e;}
+p.steel, h1.steel {color: #aab;}
+p.fairy, h1.fairy {color: #e9e;}
 
 /* ABILITY BUTTONS */
 
-.ability {
-    background: rgb(169, 199, 182);
+.ability, .special {
     pointer-events: none;
+}
+
+.special, .hidden {
+    font-style: italic;
+}
+
+.baby {
+    background: #d9b;
+}
+
+.legendary {
+    background: #ec8;
+}
+
+.mythical {
+    background: #ce9;
+}
+
+.ability {
     width: 150px;
+    background: var(--box);
 }
 
 .hidden.ability {
-    background: rgb(114, 138, 126);
+    background: rgb(141, 165, 153);
+    color: rgb(94, 110, 102);
+}
+
+.arrow {
+    height: 15px;
 }
