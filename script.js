@@ -55,16 +55,24 @@ function capitalize(str) {
 
 // POKEMON LISTS
 
+function clearSearch() {
+    document.getElementById("searchfield").value = "";
+    searchPokemons();
+}
+
 // Initial SEARCH function -- redirects to all or type search
-function searchPokemons () {
+function searchPokemons() {
     let search = document.getElementById("searchfield").value;
-    let str = search.toLowerCase();
+    let str = "";
+    str += search.toLowerCase();
+    let url = document.getElementById("typeSelector").value;
 
     // Direct to search from all pokemons or certain type of pokemons
-    if (document.getElementById("typeSelector").value == "all") {
+    if (url == "all") {
         listPokemons(str);
     } else {
-        listPokemonsByType(str);
+        getTypeInfo(url); 
+        listPokemonsByType(url, str);
     }
 }
 
@@ -191,17 +199,9 @@ async function listPokemons(str) {
 // TYPE CHOSEN
 
 // Function to list SEARCHED Pokemons when certain TYPE is selected
-async function listPokemonsByType(str) {
+async function listPokemonsByType(url, str) {
 
-    // Less cleanup -- leaving the type details box
-    document.getElementById("total").innerHTML = "";
-    document.getElementById("col1").innerHTML = "";
-    document.getElementById("col2").innerHTML = "";
-    document.getElementById("col3").innerHTML = "";
-
-    urlType = document.getElementById("typeSelector").value;
-    console.log(urlType);
-    let parsedDetails = await getData(urlType);
+    let parsedDetails = await getData(url);
     let array = parsedDetails.pokemon;
     let type = parsedDetails.name;
     let total = 0;
@@ -236,13 +236,13 @@ function getButtonString(array) {
         let obj = array[x];
 
         buttons += "<button class=\"poke-type " + obj.name + 
-            "\" value=\"" + obj.url + "\" onclick=\"getTypeList(this.value)\">" + capitalize(obj.name) + "</button>";
+            "\" value=\"" + obj.url + "\" onclick=\"getTypeInfo(this.value)\">" + capitalize(obj.name) + "</button>";
     }
     return buttons;
 }
 
 // TYPE -- Function to list all relations and pokemons of chosen type
-async function getTypeList(url) {
+async function getTypeInfo(url) {
     clean();
     // Call function to select the active type from drop down menu
     selectFromMenu(url);
@@ -254,10 +254,9 @@ async function getTypeList(url) {
     let parsedTypeList = await getData(url);
     let typeListArray = parsedTypeList.pokemon;
     let pokemonType = parsedTypeList.name;
-    let headline = capitalize(pokemonType);
 
     // Print the type headline
-    document.getElementById("headline1").innerHTML = "<h1 class=\"text-shadow " + pokemonType + "\">" + headline + "</h1>";
+    document.getElementById("headline1").innerHTML = "<h1 class=\"text-shadow " + pokemonType + "\">" + capitalize(pokemonType) + "</h1>";
 
     // RELATIONS
     let damages = parsedTypeList.damage_relations;
@@ -290,29 +289,38 @@ async function getTypeList(url) {
     }
     document.getElementById("top2").innerHTML += "<h4 class=\"red\">Weak defense (2x damage taken) from:</h4>" + weakDef;
 
-    // POKEMONS
+    let searchfield = document.getElementById("searchfield").value;
 
-    // Loop through all pokemons
-    let total = typeListArray.length;
-    let array = [];
+    if (searchfield == "") {
+        listAllPokemonsPerType(typeListArray, pokemonType);
+    } else {
+        listPokemonsByType(url, searchfield);
+    }
+}
 
-    for (const x in typeListArray) {
-        typeList = typeListArray[x];
+// function to list all Pokémons per TYPE
+function listAllPokemonsPerType(array, type) {
+
+    let total = array.length;
+    let array2 = [];
+
+    for (const x in array) {
+        typeList = array[x];
         pokemon = typeList.pokemon;
 
-            array.push({
+            array2.push({
                 "name" : pokemon.name,
                 "url" : pokemon.url});
     }
 
     // Compile printable lists for the bottom columns from the second array
-    let cols = compileLists(array, total);
+    let cols = compileLists(array2, total);
 
     // Print the bottom columns
     printLists(cols.col1, cols.col2, cols.col3);
 
     // Print the list headline and total
-    document.getElementById("headline2").innerHTML = "<p class=\"hl2 large text-shadow " + pokemonType + "\">" + headline + " Pokémon:</p>"
+    document.getElementById("headline2").innerHTML = "<p class=\"hl2 large text-shadow " + type + "\">" + capitalize(type) + " Pokémon:</p>"
     document.getElementById("total").innerHTML = "<p class=\"hl2 pl\">Total: " + total + "</p>";
 }
 
@@ -426,7 +434,7 @@ async function getPokemonDetails(url) {
         type = types.type;
 
         //Create list of the pokemon's types
-        typeList += "<br><button class=\"poke-type " + type.name + "\" value=\"" + type.url + "\" onclick=\"getTypeList(this.value)\">" + capitalize(type.name) + "</button>";
+        typeList += "<br><button class=\"poke-type " + type.name + "\" value=\"" + type.url + "\" onclick=\"getTypeInfo(this.value)\">" + capitalize(type.name) + "</button>";
     }
 
     // Print type buttons to the end of column 2
@@ -499,7 +507,7 @@ function chooseType() {
         document.getElementById("col2").innerHTML = "Please select a type or enter text on search bar.";
     // If type is chosen, redirect to type list
     } else {
-        getTypeList(urlType);
+        getTypeInfo(urlType);
     }
 }
 

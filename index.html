@@ -26,7 +26,11 @@
         <nav class="navbar">
             <div class="container-fluid d-flex justify-content-around">
                         <div id="selector"></div>
-                        <div><input id="searchfield" type="text"><button onclick="searchPokemons()" type="button">Search</button></div>
+                        <div>
+                            <input onkeydown="if (event.key == 'Enter'){searchPokemons()}else{}" id="searchfield" type="text">
+                            <button onclick="searchPokemons()" type="button">Search</button> 
+                            &nbsp;&nbsp;&nbsp;<button onclick="clearSearch()" type="button">Clear</button>
+                        </div>
                         <div><a href="https://pokeapi.co/">Site utilizes pokeAPI</a></div>
                     </div>
                 </div>
